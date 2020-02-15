@@ -42,6 +42,13 @@ public class MyService extends Service {
             } catch (Exception e){}
             Log.d(TAG, "Waiting "+i+ "seconds.");
         }
+
+        Intent showIntent = new Intent(getApplicationContext(), MainActivity.class);
+        showIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_SINGLE_TOP|Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        // NEWTASK는 필수 + 나머지는 MainActivity 재사용을 위함
+        showIntent.putExtra("command","show");
+        showIntent.putExtra("name",name+" from service");
+        startActivity(showIntent);
     }
 
     @Override
